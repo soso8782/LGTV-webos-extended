@@ -1,0 +1,189 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Vyber svoj LG webOS televízor",
+        "data": {
+          "tv_entity": "LG webOS TV",
+          "warning": "Zobraziť na TV upozornenie 1 minútu pred vypnutím"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Tento televízor je už nastavený"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Možnosti",
+        "data": {
+          "warning": "Zobraziť na TV upozornenie 1 minútu pred vypnutím"
+        }
+      }
+    }
+  },
+  "entity": {
+    "button": {
+      "key_home": {
+        "name": "Domov"
+      },
+      "key_back": {
+        "name": "Späť"
+      },
+      "key_exit": {
+        "name": "Ukončiť"
+      },
+      "key_menu": {
+        "name": "Nastavenia"
+      },
+      "key_qmenu": {
+        "name": "Rýchle menu"
+      },
+      "key_info": {
+        "name": "Info"
+      },
+      "key_up": {
+        "name": "Hore"
+      },
+      "key_down": {
+        "name": "Dole"
+      },
+      "key_left": {
+        "name": "Vľavo"
+      },
+      "key_right": {
+        "name": "Vpravo"
+      },
+      "key_enter": {
+        "name": "OK"
+      },
+      "key_volumeup": {
+        "name": "Hlasitosť +"
+      },
+      "key_volumedown": {
+        "name": "Hlasitosť −"
+      },
+      "key_mute": {
+        "name": "Stlmiť"
+      },
+      "key_channelup": {
+        "name": "Kanál +"
+      },
+      "key_channeldown": {
+        "name": "Kanál −"
+      },
+      "key_play": {
+        "name": "Prehrať"
+      },
+      "key_pause": {
+        "name": "Pauza"
+      },
+      "key_stop": {
+        "name": "Stop"
+      },
+      "key_rewind": {
+        "name": "Pretočiť späť"
+      },
+      "key_fastforward": {
+        "name": "Pretočiť dopredu"
+      },
+      "key_guide": {
+        "name": "Programový sprievodca"
+      },
+      "key_list": {
+        "name": "Zoznam kanálov"
+      },
+      "key_red": {
+        "name": "Červené"
+      },
+      "key_green": {
+        "name": "Zelené"
+      },
+      "key_yellow": {
+        "name": "Žlté"
+      },
+      "key_blue": {
+        "name": "Modré"
+      },
+      "key_asterisk": {
+        "name": "Hviezdička"
+      },
+      "key_dash": {
+        "name": "Pomlčka"
+      },
+      "key_cc": {
+        "name": "Titulky"
+      },
+      "key_netflix": {
+        "name": "Netflix"
+      },
+      "key_amazon": {
+        "name": "Prime Video"
+      },
+      "key_0": {
+        "name": "Číslo 0"
+      },
+      "key_1": {
+        "name": "Číslo 1"
+      },
+      "key_2": {
+        "name": "Číslo 2"
+      },
+      "key_3": {
+        "name": "Číslo 3"
+      },
+      "key_4": {
+        "name": "Číslo 4"
+      },
+      "key_5": {
+        "name": "Číslo 5"
+      },
+      "key_6": {
+        "name": "Číslo 6"
+      },
+      "key_7": {
+        "name": "Číslo 7"
+      },
+      "key_8": {
+        "name": "Číslo 8"
+      },
+      "key_9": {
+        "name": "Číslo 9"
+      }
+    },
+    "select": {
+      "sleep_timer": {
+        "name": "Časovač vypnutia",
+        "state": {
+          "off": "Vypnutý",
+          "15": "15 min",
+          "30": "30 min",
+          "45": "45 min",
+          "60": "60 min",
+          "90": "90 min",
+          "120": "120 min",
+          "180": "180 min"
+        }
+      },
+      "sound_output": {
+        "name": "Zvukový výstup",
+        "state": {
+          "tv_speaker": "Reproduktory TV",
+          "external_arc": "HDMI ARC",
+          "external_optical": "Optický",
+          "bt_soundbar": "Bluetooth",
+          "tv_external_speaker": "TV + externý reproduktor",
+          "tv_speaker_headphone": "Reproduktory TV + slúchadlá",
+          "headphone": "Slúchadlá",
+          "lineout": "Linkový výstup"
+        }
+      }
+    },
+    "sensor": {
+      "sleep_timer_end": {
+        "name": "Časovač vypne TV o"
+      }
+    }
+  }
+}

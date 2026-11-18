@@ -1,0 +1,13 @@
+{
+  "domain": "lg_webos_extras",
+  "name": "LG webOS Extras",
+  "after_dependencies": ["webostv"],
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/soso8782/LGTV-webos-extended",
+  "integration_type": "helper",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/soso8782/LGTV-webos-extended/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}

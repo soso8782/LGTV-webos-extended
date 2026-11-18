@@ -1,0 +1,189 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Select your LG webOS TV",
+        "data": {
+          "tv_entity": "LG webOS TV",
+          "warning": "Show a warning on the TV 1 minute before it turns off"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "This TV is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "data": {
+          "warning": "Show a warning on the TV 1 minute before it turns off"
+        }
+      }
+    }
+  },
+  "entity": {
+    "button": {
+      "key_home": {
+        "name": "Home"
+      },
+      "key_back": {
+        "name": "Back"
+      },
+      "key_exit": {
+        "name": "Exit"
+      },
+      "key_menu": {
+        "name": "Settings"
+      },
+      "key_qmenu": {
+        "name": "Quick menu"
+      },
+      "key_info": {
+        "name": "Info"
+      },
+      "key_up": {
+        "name": "Up"
+      },
+      "key_down": {
+        "name": "Down"
+      },
+      "key_left": {
+        "name": "Left"
+      },
+      "key_right": {
+        "name": "Right"
+      },
+      "key_enter": {
+        "name": "OK"
+      },
+      "key_volumeup": {
+        "name": "Volume up"
+      },
+      "key_volumedown": {
+        "name": "Volume down"
+      },
+      "key_mute": {
+        "name": "Mute"
+      },
+      "key_channelup": {
+        "name": "Channel up"
+      },
+      "key_channeldown": {
+        "name": "Channel down"
+      },
+      "key_play": {
+        "name": "Play"
+      },
+      "key_pause": {
+        "name": "Pause"
+      },
+      "key_stop": {
+        "name": "Stop"
+      },
+      "key_rewind": {
+        "name": "Rewind"
+      },
+      "key_fastforward": {
+        "name": "Fast forward"
+      },
+      "key_guide": {
+        "name": "Guide"
+      },
+      "key_list": {
+        "name": "Channel list"
+      },
+      "key_red": {
+        "name": "Red"
+      },
+      "key_green": {
+        "name": "Green"
+      },
+      "key_yellow": {
+        "name": "Yellow"
+      },
+      "key_blue": {
+        "name": "Blue"
+      },
+      "key_asterisk": {
+        "name": "Asterisk"
+      },
+      "key_dash": {
+        "name": "Dash"
+      },
+      "key_cc": {
+        "name": "Subtitles"
+      },
+      "key_netflix": {
+        "name": "Netflix"
+      },
+      "key_amazon": {
+        "name": "Prime Video"
+      },
+      "key_0": {
+        "name": "Number 0"
+      },
+      "key_1": {
+        "name": "Number 1"
+      },
+      "key_2": {
+        "name": "Number 2"
+      },
+      "key_3": {
+        "name": "Number 3"
+      },
+      "key_4": {
+        "name": "Number 4"
+      },
+      "key_5": {
+        "name": "Number 5"
+      },
+      "key_6": {
+        "name": "Number 6"
+      },
+      "key_7": {
+        "name": "Number 7"
+      },
+      "key_8": {
+        "name": "Number 8"
+      },
+      "key_9": {
+        "name": "Number 9"
+      }
+    },
+    "select": {
+      "sleep_timer": {
+        "name": "Sleep timer",
+        "state": {
+          "off": "Off",
+          "15": "15 min",
+          "30": "30 min",
+          "45": "45 min",
+          "60": "60 min",
+          "90": "90 min",
+          "120": "120 min",
+          "180": "180 min"
+        }
+      },
+      "sound_output": {
+        "name": "Sound output",
+        "state": {
+          "tv_speaker": "TV speakers",
+          "external_arc": "HDMI ARC",
+          "external_optical": "Optical",
+          "bt_soundbar": "Bluetooth",
+          "tv_external_speaker": "TV + external speaker",
+          "tv_speaker_headphone": "TV speakers + headphones",
+          "headphone": "Headphones",
+          "lineout": "Line out"
+        }
+      }
+    },
+    "sensor": {
+      "sleep_timer_end": {
+        "name": "Sleep timer turns off at"
+      }
+    }
+  }
+}

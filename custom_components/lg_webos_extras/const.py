@@ -1,0 +1,67 @@
+"""Constants for LG webOS Extras."""
+
+from __future__ import annotations
+
+DOMAIN = "lg_webos_extras"
+
+CONF_TV_ENTITY = "tv_entity"
+CONF_WARNING = "warning"
+
+WEBOSTV_DOMAIN = "webostv"
+
+# Sleep timer presets (minutes). "off" = timer not running.
+SLEEP_OFF = "off"
+SLEEP_PRESETS = ["15", "30", "45", "60", "90", "120", "180"]
+SLEEP_OPTIONS = [SLEEP_OFF, *SLEEP_PRESETS]
+
+# Seconds before turning off when a warning toast is shown on the TV.
+WARNING_SECONDS = 60
+
+# Remote buttons: (webOS key, enabled by default)
+REMOTE_BUTTONS: list[tuple[str, bool]] = [
+    ("HOME", True),
+    ("BACK", True),
+    ("EXIT", True),
+    ("MENU", True),
+    ("QMENU", True),
+    ("INFO", True),
+    ("UP", True),
+    ("DOWN", True),
+    ("LEFT", True),
+    ("RIGHT", True),
+    ("ENTER", True),
+    ("VOLUMEUP", True),
+    ("VOLUMEDOWN", True),
+    ("MUTE", True),
+    ("CHANNELUP", True),
+    ("CHANNELDOWN", True),
+    ("PLAY", True),
+    ("PAUSE", True),
+    ("STOP", False),
+    ("REWIND", False),
+    ("FASTFORWARD", False),
+    ("GUIDE", False),
+    ("LIST", False),
+    ("RED", False),
+    ("GREEN", False),
+    ("YELLOW", False),
+    ("BLUE", False),
+    ("ASTERISK", False),
+    ("DASH", False),
+    ("CC", False),
+    ("NETFLIX", False),
+    ("AMAZON", False),
+    *[(str(n), False) for n in range(10)],
+]
+
+# Known webOS sound outputs (the current one from the TV is always added too).
+SOUND_OUTPUTS = [
+    "tv_speaker",
+    "external_arc",
+    "external_optical",
+    "bt_soundbar",
+    "tv_external_speaker",
+    "tv_speaker_headphone",
+    "headphone",
+    "lineout",
+]
