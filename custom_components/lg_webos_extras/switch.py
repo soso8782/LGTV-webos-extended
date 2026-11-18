@@ -34,10 +34,11 @@ class ScreenSwitch(ExtrasEntity, SwitchEntity):
     def __init__(self, hass: HomeAssistant, entry: ExtrasConfigEntry) -> None:
         super().__init__(hass, entry, "screen")
         self._screen_on = True
+        self._unsupported = False
 
     @property
     def available(self) -> bool:
-        return self.tv_on
+        return self.tv_on and not self._unsupported
 
     @property
     def is_on(self) -> bool:
@@ -64,6 +65,10 @@ class ScreenSwitch(ExtrasEntity, SwitchEntity):
                 blocking=True,
             )
         except HomeAssistantError as err:
+            if "404" in str(err):
+                # Older webOS (e.g. 2015 models) has no screen-off service: hide the switch.
+                self._unsupported = True
+                self.async_write_ha_state()
             raise HomeAssistantError(
                 f"Tento televízor nepodporuje vypnutie obrazovky ({err})"
             ) from err
