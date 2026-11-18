@@ -18,7 +18,8 @@
       "init": {
         "title": "Možnosti",
         "data": {
-          "warning": "Zobraziť na TV upozornenie 1 minútu pred vypnutím"
+          "warning": "Zobraziť na TV upozornenie 1 minútu pred vypnutím",
+          "apps": "Aplikácie vo výbere aplikácií"
         }
       }
     }
@@ -178,11 +179,19 @@
           "headphone": "Slúchadlá",
           "lineout": "Linkový výstup"
         }
+      },
+      "app": {
+        "name": "Aplikácia"
       }
     },
     "sensor": {
       "sleep_timer_end": {
         "name": "Časovač vypne TV o"
+      }
+    },
+    "switch": {
+      "screen": {
+        "name": "Obrazovka"
       }
     }
   }

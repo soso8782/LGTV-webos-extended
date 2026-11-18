@@ -10,7 +10,17 @@ from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.event import async_track_state_change_event
 
-from .const import CONF_TV_ENTITY, DOMAIN
+from .const import CONF_TV_ENTITY, DEFAULT_APP_EXACT, DEFAULT_APP_KEYWORDS, DOMAIN
+
+
+def default_apps(sources: list[str]) -> list[str]:
+    """Pick Netflix / HBO Max / TiviMate from the TV source list."""
+    picked = []
+    for name in sources:
+        low = name.lower().strip()
+        if low in DEFAULT_APP_EXACT or any(k in low for k in DEFAULT_APP_KEYWORDS):
+            picked.append(name)
+    return picked
 
 
 def tv_device_info(hass: HomeAssistant, entry: ConfigEntry) -> DeviceInfo:

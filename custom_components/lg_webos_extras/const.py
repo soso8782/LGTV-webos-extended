@@ -6,6 +6,11 @@ DOMAIN = "lg_webos_extras"
 
 CONF_TV_ENTITY = "tv_entity"
 CONF_WARNING = "warning"
+CONF_APPS = "apps"
+
+# Used to pick default apps from the TV source list when none are configured.
+DEFAULT_APP_KEYWORDS = ("netflix", "hbo", "tivimate")
+DEFAULT_APP_EXACT = ("max",)
 
 WEBOSTV_DOMAIN = "webostv"
 

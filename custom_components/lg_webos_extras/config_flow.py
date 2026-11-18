@@ -10,7 +10,8 @@ from homeassistant.config_entries import ConfigEntry, ConfigFlow, ConfigFlowResu
 from homeassistant.core import callback
 from homeassistant.helpers import selector
 
-from .const import CONF_TV_ENTITY, CONF_WARNING, DOMAIN, WEBOSTV_DOMAIN
+from .const import CONF_APPS, CONF_TV_ENTITY, CONF_WARNING, DOMAIN, WEBOSTV_DOMAIN
+from .entity import default_apps
 
 
 class LgWebosExtrasConfigFlow(ConfigFlow, domain=DOMAIN):
@@ -44,16 +45,31 @@ class LgWebosExtrasConfigFlow(ConfigFlow, domain=DOMAIN):
 
 
 class LgWebosExtrasOptionsFlow(OptionsFlow):
-    """Options: toggle the warning toast."""
+    """Options: warning toast and apps shown in the app select."""
 
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
         if user_input is not None:
             return self.async_create_entry(data=user_input)
 
-        current = self.config_entry.options.get(
-            CONF_WARNING, self.config_entry.data.get(CONF_WARNING, True)
-        )
+        entry = self.config_entry
+        warning = entry.options.get(CONF_WARNING, entry.data.get(CONF_WARNING, True))
+
+        state = self.hass.states.get(entry.data[CONF_TV_ENTITY])
+        sources: list[str] = list(state.attributes.get("source_list") or []) if state else []
+        apps = entry.options.get(CONF_APPS) or default_apps(sources)
+        choices = sorted(set(sources) | set(apps))
+
         schema = vol.Schema(
-            {vol.Optional(CONF_WARNING, default=current): selector.BooleanSelector()}
+            {
+                vol.Optional(CONF_WARNING, default=warning): selector.BooleanSelector(),
+                vol.Optional(CONF_APPS, default=apps): selector.SelectSelector(
+                    selector.SelectSelectorConfig(
+                        options=choices,
+                        multiple=True,
+                        custom_value=True,
+                        mode=selector.SelectSelectorMode.DROPDOWN,
+                    )
+                ),
+            }
         )
         return self.async_show_form(step_id="init", data_schema=schema)

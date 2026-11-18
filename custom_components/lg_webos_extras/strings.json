@@ -18,7 +18,8 @@
       "init": {
         "title": "Options",
         "data": {
-          "warning": "Show a warning on the TV 1 minute before it turns off"
+          "warning": "Show a warning on the TV 1 minute before it turns off",
+          "apps": "Apps shown in the app selector"
         }
       }
     }
@@ -178,11 +179,19 @@
           "headphone": "Headphones",
           "lineout": "Line out"
         }
+      },
+      "app": {
+        "name": "App"
       }
     },
     "sensor": {
       "sleep_timer_end": {
         "name": "Sleep timer turns off at"
+      }
+    },
+    "switch": {
+      "screen": {
+        "name": "Screen"
       }
     }
   }

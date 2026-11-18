@@ -7,6 +7,8 @@ Doplnok k oficiálnej integrácii **LG webOS TV** v Home Assistante. Pridá k te
 - **Upozornenie na TV** 1 minútu pred vypnutím (dá sa vypnúť v Možnostiach)
 - **Tlačidlá ovládača** ako entity (Domov, Späť, šípky, OK, Nastavenia, Rýchle menu, hlasitosť, kanály…); menej používané sú predvolene vypnuté a zapneš ich na stránke zariadenia
 - **Zvukový výstup** (`select`): reproduktory TV, HDMI ARC, optický výstup, Bluetooth…
+- **Výber aplikácie** (`select`): predvolene Netflix, HBO Max a TiviMate (ak sú v zozname zdrojov TV). Zoznam si upravíš v **Možnostiach** integrácie – dá sa pridať akákoľvek aplikácia alebo HDMI vstup.
+- **Obrazovka** (`switch`): vypne obrazovku, zvuk hrá ďalej (hudba, podcasty). Zapnutím alebo stlačením tlačidla na ovládači sa obrazovka znova rozsvieti.
 
 Všetky entity sa zobrazia priamo na zariadení tvojho televízora.
 
@@ -32,6 +34,8 @@ cards:
       - entity: select.lg_webos_tv_casovac_vypnutia
       - entity: sensor.lg_webos_tv_casovac_vypne_tv_o
       - entity: select.lg_webos_tv_zvukovy_vystup
+      - entity: select.lg_webos_tv_aplikacia
+      - entity: switch.lg_webos_tv_obrazovka
   - type: grid
     columns: 3
     square: false
@@ -70,3 +74,6 @@ cards:
 - Časovač beží v Home Assistante, nie vo vstavanom časovači TV (ten LG cez sieťové API nesprístupňuje).
 - Ak TV vypneš inak, časovač sa automaticky zruší.
 - Ak upozornenie na TV nefunguje, vypni ho v Možnostiach integrácie – vypnutie TV funguje aj tak.
+- TiviMate je aplikácia pre Android – na webOS neexistuje. Ak ho máš na Android boxe cez HDMI, pridaj do výberu aplikácií príslušný HDMI vstup.
+- Stav prepínača Obrazovka je odhadovaný (TV ho do Home Assistantu nehlási) a po zapnutí TV sa vráti na „zapnutá“.
+- Novšie verzie Home Assistantu majú vypínač obrazovky aj v oficiálnej integrácii (predvolene vypnutý) – stačí používať jeden z nich.

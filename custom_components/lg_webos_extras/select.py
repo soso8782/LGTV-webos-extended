@@ -8,8 +8,8 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from . import ExtrasConfigEntry
-from .const import SLEEP_OFF, SLEEP_OPTIONS, SOUND_OUTPUTS, WEBOSTV_DOMAIN
-from .entity import ExtrasEntity
+from .const import CONF_APPS, SLEEP_OFF, SLEEP_OPTIONS, SOUND_OUTPUTS, WEBOSTV_DOMAIN
+from .entity import ExtrasEntity, default_apps
 from .sleep_timer import SleepTimer
 
 
@@ -20,6 +20,7 @@ async def async_setup_entry(
         [
             SleepTimerSelect(hass, entry, entry.runtime_data),
             SoundOutputSelect(hass, entry),
+            AppSelect(hass, entry),
         ]
     )
 
@@ -86,5 +87,43 @@ class SoundOutputSelect(ExtrasEntity, SelectEntity):
             WEBOSTV_DOMAIN,
             "select_sound_output",
             {ATTR_ENTITY_ID: self._tv, "sound_output": option},
+            blocking=True,
+        )
+
+
+class AppSelect(ExtrasEntity, SelectEntity):
+    """Launch one of the favourite apps (Netflix, HBO Max, TiviMate...)."""
+
+    _attr_translation_key = "app"
+    _attr_icon = "mdi:apps"
+
+    def __init__(self, hass: HomeAssistant, entry: ExtrasConfigEntry) -> None:
+        super().__init__(hass, entry, "app")
+        self._configured: list[str] = list(entry.options.get(CONF_APPS) or [])
+
+    def _tv_attr(self, name: str):
+        state = self.hass.states.get(self._tv)
+        return state.attributes.get(name) if state else None
+
+    @property
+    def options(self) -> list[str]:
+        if self._configured:
+            return self._configured
+        return default_apps(list(self._tv_attr("source_list") or []))
+
+    @property
+    def available(self) -> bool:
+        return self.tv_on and bool(self.options)
+
+    @property
+    def current_option(self) -> str | None:
+        source = self._tv_attr("source")
+        return source if source in self.options else None
+
+    async def async_select_option(self, option: str) -> None:
+        await self.hass.services.async_call(
+            "media_player",
+            "select_source",
+            {ATTR_ENTITY_ID: self._tv, "source": option},
             blocking=True,
         )

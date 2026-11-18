@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant
 from .const import CONF_TV_ENTITY, CONF_WARNING
 from .sleep_timer import SleepTimer
 
-PLATFORMS: list[Platform] = [Platform.BUTTON, Platform.SELECT, Platform.SENSOR]
+PLATFORMS: list[Platform] = [Platform.BUTTON, Platform.SELECT, Platform.SENSOR, Platform.SWITCH]
 
 type ExtrasConfigEntry = ConfigEntry[SleepTimer]
 
