@@ -7,6 +7,8 @@ DOMAIN = "lg_webos_extras"
 CONF_TV_ENTITY = "tv_entity"
 CONF_WARNING = "warning"
 CONF_APPS = "apps"
+CONF_SCREEN_OFF_SEQ = "screen_off_sequence"
+MACRO_KEY_DELAY = 0.7  # seconds between key presses
 
 # Used to pick default apps from the TV source list when none are configured.
 DEFAULT_APP_KEYWORDS = ("netflix", "hbo", "tivimate")

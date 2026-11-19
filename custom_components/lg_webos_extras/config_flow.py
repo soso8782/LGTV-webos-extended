@@ -10,7 +10,7 @@ from homeassistant.config_entries import ConfigEntry, ConfigFlow, ConfigFlowResu
 from homeassistant.core import callback
 from homeassistant.helpers import selector
 
-from .const import CONF_APPS, CONF_TV_ENTITY, CONF_WARNING, DOMAIN, WEBOSTV_DOMAIN
+from .const import CONF_APPS, CONF_SCREEN_OFF_SEQ, CONF_TV_ENTITY, CONF_WARNING, DOMAIN, WEBOSTV_DOMAIN
 from .entity import default_apps
 
 
@@ -70,6 +70,10 @@ class LgWebosExtrasOptionsFlow(OptionsFlow):
                         mode=selector.SelectSelectorMode.DROPDOWN,
                     )
                 ),
+                vol.Optional(
+                    CONF_SCREEN_OFF_SEQ,
+                    description={"suggested_value": entry.options.get(CONF_SCREEN_OFF_SEQ, "")},
+                ): selector.TextSelector(),
             }
         )
         return self.async_show_form(step_id="init", data_schema=schema)

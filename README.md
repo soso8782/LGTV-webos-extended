@@ -75,5 +75,6 @@ cards:
 - Ak TV vypneš inak, časovač sa automaticky zruší.
 - Ak upozornenie na TV nefunguje, vypni ho v Možnostiach integrácie – vypnutie TV funguje aj tak.
 - TiviMate je aplikácia pre Android – na webOS neexistuje. Ak ho máš na Android boxe cez HDMI, pridaj do výberu aplikácií príslušný HDMI vstup.
+- **Staršie TV (webOS 1/2, modely 2014–2015)** nemajú príkaz na vypnutie obrazovky. Prepínač Obrazovka potom použije postupnosť tlačidiel, ktorú nastavíš v **Možnostiach** integrácie (cesta *Nastavenia → Obraz → Úspora energie → Vypnutie obrazovky*). Formát: `MENU, wait 2, DOWN*3, ENTER` – `KLÁVES*N` = N-krát, `wait X` = pauza X sekúnd. Obrazovku znova zapne tlačidlo EXIT.
 - Stav prepínača Obrazovka je odhadovaný (TV ho do Home Assistantu nehlási) a po zapnutí TV sa vráti na „zapnutá“.
 - Novšie verzie Home Assistantu majú vypínač obrazovky aj v oficiálnej integrácii (predvolene vypnutý) – stačí používať jeden z nich.

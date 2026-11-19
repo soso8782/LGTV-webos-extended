@@ -19,7 +19,11 @@
         "title": "Options",
         "data": {
           "warning": "Show a warning on the TV 1 minute before it turns off",
-          "apps": "Apps shown in the app selector"
+          "apps": "Apps shown in the app selector",
+          "screen_off_sequence": "Screen off key sequence (for older TVs)"
+        },
+        "data_description": {
+          "screen_off_sequence": "Leave empty on newer TVs. Older models (2014–2015): keys that open Picture > Energy Saving > Screen Off, e.g. MENU, wait 2, DOWN*3, ENTER"
         }
       }
     }

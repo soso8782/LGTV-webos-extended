@@ -19,7 +19,11 @@
         "title": "Možnosti",
         "data": {
           "warning": "Zobraziť na TV upozornenie 1 minútu pred vypnutím",
-          "apps": "Aplikácie vo výbere aplikácií"
+          "apps": "Aplikácie vo výbere aplikácií",
+          "screen_off_sequence": "Postupnosť tlačidiel na vypnutie obrazovky (staršie TV)"
+        },
+        "data_description": {
+          "screen_off_sequence": "Na novších TV nechaj prázdne. Staršie modely (2014–2015): tlačidlá, ktoré otvoria Obraz > Úspora energie > Vypnutie obrazovky, napr. MENU, wait 2, DOWN*3, ENTER"
         }
       }
     }
