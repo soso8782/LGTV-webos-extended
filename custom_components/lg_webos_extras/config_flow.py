@@ -10,7 +10,19 @@ from homeassistant.config_entries import ConfigEntry, ConfigFlow, ConfigFlowResu
 from homeassistant.core import callback
 from homeassistant.helpers import selector
 
-from .const import CONF_APPS, CONF_SCREEN_OFF_SEQ, CONF_TV_ENTITY, CONF_WARNING, DOMAIN, WEBOSTV_DOMAIN
+from .const import (
+    CONF_APPS,
+    CONF_FIRETV_APPS,
+    CONF_FIRETV_ENTITY,
+    CONF_FIRETV_INPUT,
+    CONF_SCREEN_OFF_SEQ,
+    CONF_TV_ENTITY,
+    CONF_WARNING,
+    DEFAULT_FIRETV_APPS,
+    DOMAIN,
+    FIRE2MQTT_DOMAIN,
+    WEBOSTV_DOMAIN,
+)
 from .entity import default_apps
 
 
@@ -56,7 +68,9 @@ class LgWebosExtrasOptionsFlow(OptionsFlow):
 
         state = self.hass.states.get(entry.data[CONF_TV_ENTITY])
         sources: list[str] = list(state.attributes.get("source_list") or []) if state else []
-        apps = entry.options.get(CONF_APPS) or default_apps(sources)
+        firetv_set = bool(entry.options.get(CONF_FIRETV_ENTITY))
+        apps = entry.options.get(CONF_APPS) or ([] if firetv_set else default_apps(sources))
+        opt = entry.options
         choices = sorted(set(sources) | set(apps))
 
         schema = vol.Schema(
@@ -70,6 +84,26 @@ class LgWebosExtrasOptionsFlow(OptionsFlow):
                         mode=selector.SelectSelectorMode.DROPDOWN,
                     )
                 ),
+                vol.Optional(
+                    CONF_FIRETV_ENTITY,
+                    description={"suggested_value": opt.get(CONF_FIRETV_ENTITY)},
+                ): selector.EntitySelector(
+                    selector.EntitySelectorConfig(domain="media_player", integration=FIRE2MQTT_DOMAIN)
+                ),
+                vol.Optional(
+                    CONF_FIRETV_INPUT,
+                    description={"suggested_value": opt.get(CONF_FIRETV_INPUT)},
+                ): selector.SelectSelector(
+                    selector.SelectSelectorConfig(
+                        options=sorted(set(sources)),
+                        custom_value=True,
+                        mode=selector.SelectSelectorMode.DROPDOWN,
+                    )
+                ),
+                vol.Optional(
+                    CONF_FIRETV_APPS,
+                    description={"suggested_value": opt.get(CONF_FIRETV_APPS, DEFAULT_FIRETV_APPS)},
+                ): selector.TextSelector(),
                 vol.Optional(
                     CONF_SCREEN_OFF_SEQ,
                     description={"suggested_value": entry.options.get(CONF_SCREEN_OFF_SEQ, "")},

@@ -20,10 +20,16 @@
         "data": {
           "warning": "Show a warning on the TV 1 minute before it turns off",
           "apps": "Apps shown in the app selector",
-          "screen_off_sequence": "Screen off key sequence (for older TVs)"
+          "screen_off_sequence": "Screen off key sequence (for older TVs)",
+          "firetv_entity": "Fire TV (Fire2MQTT media player)",
+          "firetv_input": "TV input the Fire TV is connected to",
+          "firetv_apps": "Fire TV apps (Name=package)"
         },
         "data_description": {
-          "screen_off_sequence": "Leave empty on newer TVs. Older models (2014–2015): keys that open Picture > Energy Saving > Screen Off, e.g. MENU, wait 2, DOWN*3, ENTER"
+          "screen_off_sequence": "Leave empty on newer TVs. Older models (2014–2015): keys that open Picture > Energy Saving > Screen Off, e.g. MENU, wait 2, DOWN*3, ENTER",
+          "firetv_entity": "Optional. Apps below are launched on this Fire TV.",
+          "firetv_input": "e.g. HDMI 2 – the TV switches to it before launching the app",
+          "firetv_apps": "Comma separated, e.g. Netflix=com.netflix.ninja, HBO Max=com.wbd.stream, TiviMate=ar.tvplayer.tv"
         }
       }
     }

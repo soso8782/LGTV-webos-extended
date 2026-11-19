@@ -20,10 +20,16 @@
         "data": {
           "warning": "Zobraziť na TV upozornenie 1 minútu pred vypnutím",
           "apps": "Aplikácie vo výbere aplikácií",
-          "screen_off_sequence": "Postupnosť tlačidiel na vypnutie obrazovky (staršie TV)"
+          "screen_off_sequence": "Postupnosť tlačidiel na vypnutie obrazovky (staršie TV)",
+          "firetv_entity": "Fire TV (prehrávač z Fire2MQTT)",
+          "firetv_input": "Vstup TV, na ktorom je Fire TV",
+          "firetv_apps": "Aplikácie na Fire TV (Názov=balíček)"
         },
         "data_description": {
-          "screen_off_sequence": "Na novších TV nechaj prázdne. Staršie modely (2014–2015): tlačidlá, ktoré otvoria Obraz > Úspora energie > Vypnutie obrazovky, napr. MENU, wait 2, DOWN*3, ENTER"
+          "screen_off_sequence": "Na novších TV nechaj prázdne. Staršie modely (2014–2015): tlačidlá, ktoré otvoria Obraz > Úspora energie > Vypnutie obrazovky, napr. MENU, wait 2, DOWN*3, ENTER",
+          "firetv_entity": "Nepovinné. Aplikácie nižšie sa spustia na tomto Fire TV.",
+          "firetv_input": "napr. HDMI 2 – TV sa naň prepne pred spustením aplikácie",
+          "firetv_apps": "Oddelené čiarkou, napr. Netflix=com.netflix.ninja, HBO Max=com.wbd.stream, TiviMate=ar.tvplayer.tv"
         }
       }
     }

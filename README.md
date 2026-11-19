@@ -22,6 +22,18 @@ Všetky entity sa zobrazia priamo na zariadení tvojho televízora.
 ### Bez GitHubu
 Skopíruj priečinok `custom_components/lg_webos_extras` do `/config/custom_components/` (napr. cez doplnok File editor alebo Samba) a reštartuj HA.
 
+## Aplikácie na Fire TV (Fire2MQTT)
+
+Ak máš k TV pripojený Fire TV s integráciou [Fire2MQTT](https://github.com/Harrypulvirenti/Fire2MQTT), výber **Aplikácia** vie spúšťať aplikácie priamo na ňom:
+
+1. LG webOS Extras → **Konfigurovať**
+2. **Fire TV** – vyber prehrávač z Fire2MQTT
+3. **Vstup TV** – HDMI vstup, kde je Fire TV (TV sa naň pred spustením prepne)
+4. **Aplikácie na Fire TV** – `Názov=balíček`, predvolene:
+   `Netflix=com.netflix.ninja, HBO Max=com.wbd.stream, TiviMate=ar.tvplayer.tv`
+
+Ďalšie aplikácie pridáš rovnako (názov balíčka nájdeš napr. v atribúte `app_id` prehrávača Fire2MQTT, keď je aplikácia spustená).
+
 ## Príklad karty na dashboard
 
 Názvy entít sa môžu líšiť podľa názvu tvojho TV – skontroluj ich na stránke zariadenia.
