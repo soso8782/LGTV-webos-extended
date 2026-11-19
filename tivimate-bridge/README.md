@@ -16,26 +16,64 @@ text, ktorý ukazuje na obrazovke (lišta sa zobrazí pri každom prepnutí kan�
 GitHub → **Releases → TiviMate Channel Bridge (APK)** → `tivimate-channel-bridge.apk`
 (alebo Actions → posledný beh → Artifacts).
 
-## 2. Nainštaluj na Fire TV (cez počítač s ADB)
+## 2. Nainštaluj na Fire TV – priamo z Home Assistantu (ADB integrácia)
 
-```bash
-adb connect <IP_FIRE_TV>:5555
-adb install -r tivimate-channel-bridge.apk
+Fire TV väčšinou dovolí len jedno ADB pripojenie, ktoré už drží Home Assistant – preto je najjednoduchšie
+inštalovať cez HA. Fire2MQTT tiež používa službu zjednodušeného ovládania, preto ju **nevypínaj** –
+príkaz nižšie novú službu iba pridá k existujúcim.
 
-# webhook – použi IP adresu Home Assistantu
-echo "ha_webhook_url=http://<IP_HA>:8123/api/webhook/tivimate_channel" > config.properties
-adb shell mkdir -p /sdcard/Android/data/com.jkfran.tivimatebridge/files
-adb push config.properties /sdcard/Android/data/com.jkfran.tivimatebridge/files/config.properties
+1. Nahraj APK do HA ako `/config/tivimate-channel-bridge.apk` (File editor / Samba).
+2. Do `configuration.yaml` pridaj a reštartuj HA:
+   ```yaml
+   homeassistant:
+     allowlist_external_dirs:
+       - /config
+   ```
+3. V **Nástroje pre vývojárov → Akcie** spusti postupne (v YAML režime, `IP_HA` nahraď IP adresou HA):
+   ```yaml
+   action: androidtv.upload
+   target: {entity_id: media_player.spalna_fire_tv_spalna}
+   data:
+     local_path: /config/tivimate-channel-bridge.apk
+     device_path: /data/local/tmp/tmb.apk
+   ```
+   ```yaml
+   action: androidtv.adb_command
+   target: {entity_id: media_player.spalna_fire_tv_spalna}
+   data:
+     command: pm install -r /data/local/tmp/tmb.apk
+   ```
+   ```yaml
+   action: androidtv.adb_command
+   target: {entity_id: media_player.spalna_fire_tv_spalna}
+   data:
+     command: >-
+       mkdir -p /sdcard/Android/data/com.jkfran.tivimatebridge/files &&
+       echo 'ha_webhook_url=http://IP_HA:8123/api/webhook/tivimate_channel'
+       > /sdcard/Android/data/com.jkfran.tivimatebridge/files/config.properties
+   ```
+   ```yaml
+   action: androidtv.adb_command
+   target: {entity_id: media_player.spalna_fire_tv_spalna}
+   data:
+     command: >-
+       S=com.jkfran.tivimatebridge/com.jkfran.tivimatebridge.ChannelAccessibilityService;
+       C=$(settings get secure enabled_accessibility_services);
+       case "$C" in *tivimatebridge*) ;; null|"") settings put secure enabled_accessibility_services $S;;
+       *) settings put secure enabled_accessibility_services "$C:$S";; esac;
+       settings put secure accessibility_enabled 1;
+       settings get secure enabled_accessibility_services
+   ```
+   Výsledok posledného príkazu (atribút `adb_response`) musí obsahovať Fire2MQTT **aj** `tivimatebridge`.
 
-# zapni službu (pozor: prepíše iné zapnuté accessibility služby)
-adb shell settings put secure enabled_accessibility_services com.jkfran.tivimatebridge/com.jkfran.tivimatebridge.ChannelAccessibilityService
-adb shell settings put secure accessibility_enabled 1
-```
+Kontrola: prepni v TiviMate kanál a pozri senzor **TiviMate kanál**, prípadne
+`adb_command: logcat -d -s TiviMateBridge | tail -n 20`.
 
-Kontrola: `adb logcat -s TiviMateBridge` – po prepnutí kanála uvidíš `CHANNEL=… PROGRAM=…` a `POST 200`.
+Po aktualizácii APK Android službu vypne – zopakuj posledný príkaz. Každé zostavenie má nový
+podpisový kľúč, takže pri aktualizácii najprv `pm uninstall com.jkfran.tivimatebridge`.
 
-Po aktualizácii APK Android službu vypne – zopakuj posledné dva príkazy. Každé zostavenie má nový
-podpisový kľúč, takže pri aktualizácii najprv `adb uninstall com.jkfran.tivimatebridge`.
+### Alternatíva: z počítača
+`adb install -r tivimate-channel-bridge.apk` a rovnaké príkazy cez `adb shell` (najprv dočasne vypni ADB integráciu v HA).
 
 ## 3. Home Assistant
 
