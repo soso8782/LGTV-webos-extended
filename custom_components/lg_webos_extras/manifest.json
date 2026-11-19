@@ -5,9 +5,9 @@
   "codeowners": [],
   "config_flow": true,
   "documentation": "https://github.com/soso8782/LGTV-webos-extended",
-  "integration_type": "helper",
+  "integration_type": "service",
   "iot_class": "calculated",
   "issue_tracker": "https://github.com/soso8782/LGTV-webos-extended/issues",
   "requirements": [],
-  "version": "1.2.0"
+  "version": "1.2.1"
 }
