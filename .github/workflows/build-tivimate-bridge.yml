@@ -1,0 +1,51 @@
+name: Build TiviMate Bridge APK
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tivimate-bridge/**"
+      - ".github/workflows/build-tivimate-bridge.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install Android build-tools and platform
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "build-tools;34.0.0" "platforms;android-34"
+
+      - name: Build APK
+        working-directory: tivimate-bridge
+        env:
+          VERSION_CODE: ${{ github.run_number }}
+          VERSION_NAME: 1.1.${{ github.run_number }}-lgwebosextras
+        run: ./build.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tivimate-channel-bridge
+          path: tivimate-bridge/build/tivimate-channel-bridge.apk
+
+      - name: Publish as release "tivimate-bridge"
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: tivimate-bridge
+          name: TiviMate Channel Bridge (APK)
+          body: |
+            Accessibility service that reads the current channel and programme from TiviMate
+            and sends them to Home Assistant (LG webOS Extras). Build ${{ github.run_number }}.
+          files: tivimate-bridge/build/tivimate-channel-bridge.apk
+          make_latest: false

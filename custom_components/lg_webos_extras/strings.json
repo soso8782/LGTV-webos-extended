@@ -197,6 +197,12 @@
     "sensor": {
       "sleep_timer_end": {
         "name": "Sleep timer turns off at"
+      },
+      "tivimate_channel": {
+        "name": "TiviMate channel"
+      },
+      "tivimate_program": {
+        "name": "TiviMate program"
       }
     },
     "switch": {

@@ -28,7 +28,7 @@ async def async_setup_entry(
 ) -> None:
     async_add_entities(
         [
-            SleepTimerSelect(hass, entry, entry.runtime_data),
+            SleepTimerSelect(hass, entry, entry.runtime_data.timer),
             SoundOutputSelect(hass, entry),
             AppSelect(hass, entry),
         ]

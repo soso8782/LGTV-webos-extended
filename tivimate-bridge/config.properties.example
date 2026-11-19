@@ -1,0 +1,7 @@
+# Copy to the app's external files dir on the device (no root needed):
+#   adb push config.properties /sdcard/Android/data/com.jkfran.tivimatebridge/files/config.properties
+# then toggle the accessibility service off/on (or reboot).
+# Use the IP address of Home Assistant - .local names often don't resolve on Fire TV.
+ha_webhook_url=http://192.168.1.10:8123/api/webhook/tivimate_channel
+# Optional: how far (px) from the badge row texts still belong to the info bar.
+# banner_height=260

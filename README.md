@@ -34,6 +34,13 @@ Ak máš k TV pripojený Fire TV s integráciou [Fire2MQTT](https://github.com/H
 
 Ďalšie aplikácie pridáš rovnako (názov balíčka nájdeš napr. v atribúte `app_id` prehrávača Fire2MQTT, keď je aplikácia spustená).
 
+## TiviMate – aktuálny kanál a program
+
+TiviMate tieto údaje neposiela cez žiadne API, preto je v priečinku [`tivimate-bridge/`](tivimate-bridge/) malá Android aplikácia
+(služba zjednodušeného ovládania), ktorá ich číta z informačnej lišty TiviMate a posiela do HA.
+Integrácia ich prijíma na webhooku `tivimate_channel` a vytvorí senzory **TiviMate kanál** a **TiviMate program**
+(atribúty: číslo kanála, čas programu, nasledujúci program). Návod na inštaláciu je v [tivimate-bridge/README.md](tivimate-bridge/README.md).
+
 ## Príklad karty na dashboard
 
 Názvy entít sa môžu líšiť podľa názvu tvojho TV – skontroluj ich na stránke zariadenia.

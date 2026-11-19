@@ -197,6 +197,12 @@
     "sensor": {
       "sleep_timer_end": {
         "name": "Časovač vypne TV o"
+      },
+      "tivimate_channel": {
+        "name": "TiviMate kanál"
+      },
+      "tivimate_program": {
+        "name": "TiviMate program"
       }
     },
     "switch": {
